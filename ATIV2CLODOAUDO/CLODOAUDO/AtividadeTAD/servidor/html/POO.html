@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre Programação Orientada a Objetos</title>
+</head>
+<body>
+    <h1>Quiz sobre Programação Orientada a Objetos</h1>
+    <form id="quizForm">
+        <label for="pergunta1">Pergunta 1: O que são classes e objetos em Programação Orientada a Objetos?</label><br>
+        <input type="radio" name="pergunta1" value="a"> a) Classes são instâncias de objetos, e objetos são modelos de classes.<br>
+        <input type="radio" name="pergunta1" value="b"> b) Classes são estruturas de dados que armazenam informações, e objetos são comportamentos que manipulam essas informações.<br>
+        <input type="radio" name="pergunta1" value="c"> c) Classes são modelos que definem características e comportamentos, e objetos são instâncias desses modelos.<br><br>
+        
+        <label for="pergunta2">Pergunta 2: Explique o que é o conceito de herança múltipla e como ele é aplicado em algumas linguagens de programação orientadas a objetos.</label><br>
+        <input type="radio" name="pergunta2" value="a"> a) Herança múltipla é quando uma classe pode herdar atributos e métodos de várias outras classes, permitindo uma maior reutilização de código. Alguns exemplos de linguagens que suportam herança múltipla são C++ e Python.<br>
+        <input type="radio" name="pergunta2" value="b"> b) Herança múltipla é quando uma classe pode ser instanciada múltiplas vezes, permitindo a criação de objetos com diferentes comportamentos. Linguagens como Java e C# suportam herança múltipla.<br>
+        <input type="radio" name="pergunta2" value="c"> c) Herança múltipla é quando uma classe pode ter várias subclasses, permitindo uma hierarquia mais complexa de herança. Esta técnica é comum em linguagens como PHP e Ruby.<br><br>
+        
+        <label for="pergunta3">Pergunta 3: O que é sobrecarga de método e como ela é usada em Programação Orientada a Objetos?</label><br>
+        <input type="radio" name="pergunta3" value="a"> a) Sobrecarga de método é quando uma classe tem vários métodos com o mesmo nome, mas com diferentes assinaturas (número e tipo de parâmetros). Isso permite que a mesma ação seja realizada de maneiras diferentes, dependendo dos parâmetros fornecidos.<br>
+        <input type="radio" name="pergunta3" value="b"> b) Sobrecarga de método é quando uma classe pode ter vários métodos com o mesmo nome e a mesma assinatura. Isso permite que a mesma ação seja realizada várias vezes na mesma classe.<br>
+        <input type="radio" name="pergunta3" value="c"> c) Sobrecarga de método é quando uma classe tem vários métodos com nomes diferentes, mas com a mesma assinatura. Isso permite que a mesma ação seja realizada de maneiras diferentes, dependendo do nome do método.<br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        document.getElementById("quizForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var respostas = {
+                pergunta1: getRadioValue("pergunta1"),
+                pergunta2: getRadioValue("pergunta2"),
+                pergunta3: getRadioValue("pergunta3")
+            };
+
+            var pontuacao = 0;
+            var resultado = "";
+
+            if (respostas.pergunta1 === "b") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 1. A resposta correta era: b) Classes são estruturas de dados que armazenam informações, e objetos são comportamentos que manipulam essas informações.";
+            }
+
+            if (respostas.pergunta2 === "a") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 2. A resposta correta era: a) Herança múltipla é quando uma classe pode herdar atributos e métodos de várias outras classes, permitindo uma maior reutilização de código. Alguns exemplos de linguagens que suportam herança múltipla são C++ e Python.";
+            }
+
+            if (respostas.pergunta3 === "a") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 3. A resposta correta era: a) Sobrecarga de método é quando uma classe tem vários métodos com o mesmo nome, mas com diferentes assinaturas (número e tipo de parâmetros). Isso permite que a mesma ação seja realizada de maneiras diferentes, dependendo dos parâmetros fornecidos.";
+            }
+
+            resultado += "<br><br>Você acertou " + pontuacao + " de 3 perguntas.";
+            document.getElementById("resultado").innerHTML = resultado;
+        });
+
+        function getRadioValue(name) {
+            var radios = document.getElementsByName(name);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) return radios[i].value;
+            }
+            return null;
+        }
+    </script>
+</body>
+</html>

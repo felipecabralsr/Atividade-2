@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre HTML, CSS e JavaScript</title>
+</head>
+<body>
+    <h1>Quiz sobre HTML, CSS e JavaScript</h1>
+    <form id="quizForm">
+        <label for="pergunta1">Pergunta 1: Qual é a função do elemento &lt;div&gt; em HTML?</label><br>
+        <input type="radio" name="pergunta1" value="a"> a) Representa uma linha de texto<br>
+        <input type="radio" name="pergunta1" value="b"> b) Define uma lista ordenada<br>
+        <input type="radio" name="pergunta1" value="c"> c) Agrupa conteúdo para fins de estilo ou comportamento<br><br>
+        
+        <label for="pergunta2">Pergunta 2: O que é CSS e qual é a sua função?</label><br>
+        <input type="radio" name="pergunta2" value="a"> a) Define o conteúdo e a estrutura de uma página web<br>
+        <input type="radio" name="pergunta2" value="b"> b) Define a aparência e o estilo de uma página web<br>
+        <input type="radio" name="pergunta2" value="c"> c) Controla a interatividade e o comportamento de uma página web<br><br>
+        
+        <label for="pergunta3">Pergunta 3: Qual é a diferença entre JavaScript e HTML?</label><br>
+        <input type="radio" name="pergunta3" value="a"> a) HTML define a estrutura e o conteúdo de uma página web, enquanto JavaScript adiciona interatividade e comportamento<br>
+        <input type="radio" name="pergunta3" value="b"> b) HTML é uma linguagem de programação para criar páginas web, enquanto JavaScript é uma linguagem de marcação<br>
+        <input type="radio" name="pergunta3" value="c"> c) HTML é usado para estilizar elementos na página web, enquanto JavaScript é usado para adicionar efeitos visuais<br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        document.getElementById("quizForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var respostas = {
+                pergunta1: document.querySelector('input[name="pergunta1"]:checked').value,
+                pergunta2: document.querySelector('input[name="pergunta2"]:checked').value,
+                pergunta3: document.querySelector('input[name="pergunta3"]:checked').value
+            };
+
+            var pontuacao = 0;
+
+            if (respostas.pergunta1 === "c") {
+                pontuacao++;
+            } else {
+                document.getElementById("resposta1").innerText = "A Questão 1 está incorreta! \nA resposta correta é c) Agrupa conteúdo para fins de estilo ou comportamento";
+            }
+
+            if (respostas.pergunta2 === "b") {
+                pontuacao++;
+            } else {
+                document.getElementById("resposta2").innerText = "A Questão 2 está incorreta! \nA resposta correta é b) Define a aparência e o estilo de uma página web";
+            }
+
+            if (respostas.pergunta3 === "a") {
+                pontuacao++;
+            } else {
+                document.getElementById("resposta3").innerText = "A Questão 3 está incorreta! \nA resposta correta é a) HTML define a estrutura e o conteúdo de uma página web, enquanto JavaScript adiciona interatividade e comportamento";
+            }
+
+            var resultado = "Você acertou " + pontuacao + " de 3 perguntas.";
+            document.getElementById("resultado").innerText = resultado;
+        });
+    </script>
+    <p id="resposta1"></p>
+    <p id="resposta2"></p>
+    <p id="resposta3"></p>
+</body>
+</html>

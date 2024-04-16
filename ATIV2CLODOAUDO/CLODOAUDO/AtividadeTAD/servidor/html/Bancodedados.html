@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre Banco de Dados</title>
+</head>
+<body>
+    <h1>Quiz sobre Banco de Dados</h1>
+    <form id="quizForm">
+        <label for="pergunta1">Pergunta 1: O que é um modelo de dados relacional?</label><br>
+        <input type="radio" name="pergunta1" value="a"> a) Um modelo de dados que organiza informações em tabelas com linhas e colunas<br>
+        <input type="radio" name="pergunta1" value="b"> b) Um modelo de dados que organiza informações em documentos semiestruturados<br>
+        <input type="radio" name="pergunta1" value="c"> c) Um modelo de dados que organiza informações em hierarquias de objetos<br><br>
+        
+        <label for="pergunta2">Pergunta 2: O que é uma chave estrangeira em um banco de dados relacional?</label><br>
+        <input type="radio" name="pergunta2" value="a"> a) Uma chave primária de outra tabela<br>
+        <input type="radio" name="pergunta2" value="b"> b) Uma chave que identifica unicamente cada registro em uma tabela<br>
+        <input type="radio" name="pergunta2" value="c"> c) Uma chave que permite a busca rápida de registros em uma tabela<br><br>
+        
+        <label for="pergunta3">Pergunta 3: Qual é a vantagem do modelo NoSQL sobre o modelo relacional em certos cenários?</label><br>
+        <input type="radio" name="pergunta3" value="a"> a) Maior consistência e integridade dos dados<br>
+        <input type="radio" name="pergunta3" value="b"> b) Maior escalabilidade e flexibilidade na estrutura dos dados<br>
+        <input type="radio" name="pergunta3" value="c"> c) Maior suporte para consultas complexas e transações ACID<br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        document.getElementById("quizForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var respostas = {
+                pergunta1: getRadioValue("pergunta1"),
+                pergunta2: getRadioValue("pergunta2"),
+                pergunta3: getRadioValue("pergunta3")
+            };
+
+            var pontuacao = 0;
+            var resultado = "";
+
+            if (respostas.pergunta1 === "a") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 1. A resposta correta era: a) Um modelo de dados que organiza informações em tabelas com linhas e colunas";
+            }
+
+            if (respostas.pergunta2 === "a") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 2. A resposta correta era: a) Uma chave primária de outra tabela";
+            }
+
+            if (respostas.pergunta3 === "b") {
+                pontuacao++;
+            } else {
+                resultado += "<br>Você errou a pergunta 3. A resposta correta era: b) Maior escalabilidade e flexibilidade na estrutura dos dados";
+            }
+
+            resultado += "<br><br>Você acertou " + pontuacao + " de 3 perguntas.";
+            document.getElementById("resultado").innerHTML = resultado;
+        });
+
+        function getRadioValue(name) {
+            var radios = document.getElementsByName(name);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) return radios[i].value;
+            }
+            return null;
+        }
+    </script>
+</body>
+</html>
